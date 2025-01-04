@@ -8,10 +8,6 @@ class ExtensionPage(BasePage):
         super().__init__(sb)
 
     def activate(self):
-        super().goTo(
-            "chrome-extension://lgmpfmgeabnnlemejacfljbmonaomfmm/index.html", True
-        )
-
         activateBtn = "#root > div > div.flex.flex-col.min-h-\[535px\] > div:nth-child(1) > div > div > img"
         logOutBtn = "#dropdown > ul > li > img"
         registerBtn = "#root > div > div > div.w-full > div:nth-child(3) > a"

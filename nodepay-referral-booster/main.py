@@ -7,7 +7,6 @@ from utils import *
 with SB(maximize=True, uc=True, headed=True) as sb:
     # Init pages
     webStorePage = WebStorePage(sb)
-    registerPage = RegisterPage(sb)
 
     # Manually install nodepay extension
     webStorePage.goTo(
@@ -17,5 +16,5 @@ with SB(maximize=True, uc=True, headed=True) as sb:
     webStorePage.installExt()
 
     # Start
-    while BasePage.time <= 900:
-        registerPage.complete_form()
+    registerPage = RegisterPage(sb)
+    registerPage.complete_form()

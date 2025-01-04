@@ -13,11 +13,10 @@ class BasePage:
         self.sb.sleep(2)
 
     def insertText(self, locator, value):
-        # self.sb.highlight(locator)
         self.sb.clear(locator)
         self.sb.type(locator, value)
 
     def click(self, locator):
-        # self.sb.highlight(locator)
+        self.sb.sleep(2)
         self.sb.click(locator)
         self.sb.sleep(2)

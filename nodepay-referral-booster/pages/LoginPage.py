@@ -19,7 +19,6 @@ class LoginPage(BasePage):
         while True:
             super().insertText(usernameInput, BasePage.randomStr)
             super().insertText(newPwdInput, "th!3n2OO2nh4n")
-            self.sb.sleep(2)
             super().click(submitBtn)
 
             if not (self.sb.is_element_present(errorNoti)):
@@ -28,4 +27,8 @@ class LoginPage(BasePage):
                 self.sb.refresh_page()
 
         if self.sb.get_current_url() == "https://app.nodepay.ai/dashboard":
+            self.sb.refresh_page()
+            super().goTo(
+                "chrome-extension://lgmpfmgeabnnlemejacfljbmonaomfmm/index.html", True
+            )
             extensionPage.activate()
