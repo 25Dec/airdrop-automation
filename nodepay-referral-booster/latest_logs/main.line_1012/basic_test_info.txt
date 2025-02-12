@@ -1,0 +1,40 @@
+main.py:1012:SB
+--------------------------------------------------------------------
+Last Page: https://chromewebstore.google.com/detail/nodepay-extension/lgmpfmgeabnnlemejacfljbmonaomfmm?hl=en-US&utm_source=ext_sidebar
+ Duration: 25.83s
+  Browser: Chrome 132.0.6834.84
+   Driver: chromedriver 132.0.6834.83
+Timestamp: 1737453070  (Unix Timestamp)
+     Date: Tuesday, 21 January 2025
+     Time: 4:51:10 PM  (SE Asia Standard Time, UTC+07:00)
+--------------------------------------------------------------------
+Traceback:
+  Traceback (most recent call last):
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\main.py", line 60, in launch_chrome_window
+    sb.type("//input[@id='basic_email']", f"{randomStr}@gm.ussh.com")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\.venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 1099, in type
+    self.update_text(selector, text, by=by, timeout=timeout, retry=retry)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\.venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 893, in update_text
+    element = self.wait_for_element_clickable(
+        selector, by=by, timeout=timeout
+    )
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\.venv\Lib\site-packages\seleniumbase\fixtures\base_case.py", line 9079, in wait_for_element_clickable
+    return page_actions.wait_for_element_clickable(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.driver,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        original_selector=original_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\.venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 910, in wait_for_element_clickable
+    timeout_exception(NoSuchElementException, message)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Coding\airdrop-automation\nodepay-referral-booster\.venv\Lib\site-packages\seleniumbase\fixtures\page_actions.py", line 267, in timeout_exception
+    raise exc(msg)
+seleniumbase.common.exceptions.NoSuchElementException: Message: 
+ Element {//input[@id='basic_email']} was not present after 10 seconds!
+
