@@ -46,10 +46,10 @@ public class HarpiePage extends BasePage {
         }
     }
 
-    public void getCurrentPoints() {
+    public String getCurrentPoints() {
         try {
-            csWaitForSelector("//div[@class='flex gap-2 xxs:gap-1.5']/button/p");
-            System.out.println(csLocator("//div[@class='flex gap-2 xxs:gap-1.5']/button/p").textContent());
+            csLocator("//div[@class='relative mx-auto overflow-hidden border bg-gradient-to-t from-neutral-900 to-neutral-950 border-neutral-800 sm:max-h-none max-xs:w-full max-h-4xl sm:max-w-4xl rounded-t-3xl xs:rounded-3xl']//div[contains(@class,'cursor-pointer')][1]").click();
+            return csLocator("//div[@class='flex gap-2 xxs:gap-1.5']/button[1]/p").textContent();
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [HarpiePage] getCurrentPoints() ==||== " + e.toString());

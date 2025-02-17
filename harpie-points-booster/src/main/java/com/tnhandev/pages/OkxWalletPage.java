@@ -91,7 +91,6 @@ public class OkxWalletPage extends BasePage {
             for (Page page : context.pages()) {
                 if (page.title().trim().contains("My Dashboard | Harpie")) {
                     page.bringToFront();
-                    csDelay(500);
                     page.close();
                 }
             }

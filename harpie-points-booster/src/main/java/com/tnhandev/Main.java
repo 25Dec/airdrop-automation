@@ -14,13 +14,13 @@ public class Main {
         try (
                 Playwright playwright = Playwright.create();
                 Browser browser = playwright.chromium().connectOverCDP("http://127.0.0.1:9876");
-                BrowserContext context = browser.contexts().getFirst();
+                BrowserContext context = browser.contexts().getFirst()
         ) {
             OkxWalletPage okxWalletPage = new OkxWalletPage(context, walletPassword, sendToAddress, amountToSend);
             int count = 1;
 
             while (true) {
-                System.out.println("🔥 Lần thứ: " + count + " 🔥");
+                long startTime = System.nanoTime();
                 try {
                     okxWalletPage.login();
                     okxWalletPage.switchRpc();
@@ -32,10 +32,20 @@ public class Main {
                     okxWalletPage.closeHarpiePages();
                 }
                 catch (RuntimeException e) {
-                    System.out.println("");
+                    System.out.println("|");
                 }
+                long endTime = System.nanoTime();
+                calculateDuration(startTime, endTime, count);
                 count++;
             }
         }
+    }
+
+    public static void calculateDuration(long startTime, long endTime, int count) {
+        double duration = (endTime - startTime) / 1_000_000_000.0; // Đổi sang giây
+        if (duration < 60)
+            System.out.printf("🔄️ Lần thứ: %d | ⏳ Thời gian thực hiện: %.2f giây%n", count, duration);
+        else
+            System.out.printf("🔄️ Lần thứ: %d | ⏳ Thời gian thực hiện: %.2f phút%n", count, duration / 60);
     }
 }

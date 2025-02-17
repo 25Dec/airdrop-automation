@@ -8,7 +8,7 @@ import com.microsoft.playwright.options.LoadState;
 public abstract class BasePage {
     protected BrowserContext context;
     protected Page page;
-    private double globalTimeout = 1500;
+    private double globalTimeout = 1000;
 
     public BasePage(BrowserContext context) {
         this.context = context;
