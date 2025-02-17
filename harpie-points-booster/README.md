@@ -1,12 +1,3 @@
-## <center>DEMO</center>
-
-<center>
-    <video width="480" height="240" controls>
-      <source src="./demo/video.mp4" type="video/mp4">
-        Demo
-    </video>
-</center>
-
 ## <center>HƯỚNG DẪN SỬ DỤNG</center>
 
 ### Mở file `Main.java` và thay đổi giá trị của các dấu `?`:
