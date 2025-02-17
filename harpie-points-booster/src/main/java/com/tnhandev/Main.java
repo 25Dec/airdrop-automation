@@ -17,8 +17,10 @@ public class Main {
                 BrowserContext context = browser.contexts().getFirst();
         ) {
             OkxWalletPage okxWalletPage = new OkxWalletPage(context, walletPassword, sendToAddress, amountToSend);
+            int count = 1;
 
             while (true) {
+                System.out.println("🔥 Lần thứ: " + count + " 🔥");
                 try {
                     okxWalletPage.login();
                     okxWalletPage.switchRpc();
@@ -27,10 +29,12 @@ public class Main {
                     okxWalletPage.switchToHarpiePage();
                     okxWalletPage.confirmTransaction();
                     okxWalletPage.lockWallet();
+                    okxWalletPage.closeHarpiePages();
                 }
                 catch (RuntimeException e) {
-                    System.out.println(e.toString());
+                    System.out.println("");
                 }
+                count++;
             }
         }
     }

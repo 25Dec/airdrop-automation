@@ -26,7 +26,7 @@ public class HarpiePage extends BasePage {
             csLocator("//button[span[text()='Approve']]").click();
         }
         catch (RuntimeException e) {
-            System.out.println("Lỗi ở [OkxWalletPage] harpieApproveTransaction() ==||== " + e.toString());
+            System.out.println("Lỗi ở [HarpiePage] harpieApproveTransaction() ==||== " + e.toString());
             throw new RuntimeException();
         }
     }
@@ -41,7 +41,18 @@ public class HarpiePage extends BasePage {
             }
         }
         catch (RuntimeException e) {
-            System.out.println("Lỗi ở [OkxWalletPage] switchToOkxWalletPage() ==||== " + e.toString());
+            System.out.println("Lỗi ở [HarpiePage] switchToOkxWalletPage() ==||== " + e.toString());
+            throw new RuntimeException();
+        }
+    }
+
+    public void getCurrentPoints() {
+        try {
+            csWaitForSelector("//div[@class='flex gap-2 xxs:gap-1.5']/button/p");
+            System.out.println(csLocator("//div[@class='flex gap-2 xxs:gap-1.5']/button/p").textContent());
+        }
+        catch (RuntimeException e) {
+            System.out.println("Lỗi ở [HarpiePage] getCurrentPoints() ==||== " + e.toString());
             throw new RuntimeException();
         }
     }

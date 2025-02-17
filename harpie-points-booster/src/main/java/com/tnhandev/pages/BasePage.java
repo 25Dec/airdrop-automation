@@ -49,8 +49,4 @@ public abstract class BasePage {
         csDelay();
         return page.getByPlaceholder(text);
     }
-
-    protected void csClose() {
-        page.close();
-    }
 }

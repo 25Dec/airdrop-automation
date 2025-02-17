@@ -45,6 +45,8 @@ public class OkxWalletPage extends BasePage {
 
     public void fillInForm() {
         try {
+            csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
+            csWaitForLoadState();
             csLocator("//i[contains(@class,'okx-wallet-plugin-up')]").click();
             csGetByPlaceholder("Enter wallet address or domain name").fill(sendToAddress);
             csGetByPlaceholder("0.000000").fill(amountToSend);
@@ -84,6 +86,22 @@ public class OkxWalletPage extends BasePage {
         }
     }
 
+    public void closeHarpiePages() {
+        try {
+            for (Page page : context.pages()) {
+                if (page.title().trim().contains("My Dashboard | Harpie")) {
+                    page.bringToFront();
+                    csDelay(500);
+                    page.close();
+                }
+            }
+        }
+        catch (RuntimeException e) {
+            System.out.println("Lỗi ở [OkxWalletPage] closeHarpiePages() ==||== " + e.toString());
+            throw new RuntimeException();
+        }
+    }
+
     public void lockWallet() {
         try {
             csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
@@ -94,21 +112,6 @@ public class OkxWalletPage extends BasePage {
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] lockWallet() ==||== " + e.toString());
-            throw new RuntimeException();
-        }
-    }
-
-    public void closeHarpiePages() {
-        try {
-            for (Page page : context.pages()) {
-                if (page.url().contains("harpie.io")) {
-                    page.bringToFront();
-                    csClose();
-                }
-            }
-        }
-        catch (RuntimeException e) {
-            System.out.println("Lỗi ở [OkxWalletPage] closeHarpiePage() ==||== " + e.toString());
             throw new RuntimeException();
         }
     }
