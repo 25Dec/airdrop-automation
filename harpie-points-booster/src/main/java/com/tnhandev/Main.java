@@ -17,24 +17,19 @@ public class Main {
                 BrowserContext context = browser.contexts().getFirst();
         ) {
             OkxWalletPage okxWalletPage = new OkxWalletPage(context, walletPassword, sendToAddress, amountToSend);
-            okxWalletPage.login();
-            okxWalletPage.switchRpc();
-
-            int harpiePageCount = 0;
 
             while (true) {
                 try {
+                    okxWalletPage.login();
+                    okxWalletPage.switchRpc();
                     okxWalletPage.fillInForm();
                     okxWalletPage.confirmTransaction();
                     okxWalletPage.switchToHarpiePage();
                     okxWalletPage.confirmTransaction();
-                    harpiePageCount++;
-
-                    if (harpiePageCount >= 10)
-                        System.out.println("Đã đủ 10 page");
+                    okxWalletPage.lockWallet();
                 }
                 catch (RuntimeException e) {
-                    break;
+                    System.out.println(e.toString());
                 }
             }
         }

@@ -10,10 +10,9 @@ public class HarpiePage extends BasePage {
 
     public void login() {
         try {
-            csNavigate("https://harpie.io/app/dashboard/0x23e3B27eDAD2f05F6831b2E37D000817275C4e52/?chainId=8453");
+            csNavigate("https://harpie.io/");
             csWaitForLoadState();
-            harpieApproveTransaction();
-            switchToOkxWalletPage();
+            csGetByText("ENTER APP").click();
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [HarpiePage] login() ==||== " + e.toString());
@@ -21,7 +20,7 @@ public class HarpiePage extends BasePage {
         }
     }
 
-    public void harpieApproveTransaction() {
+    public void approveTransaction() {
         try {
             csWaitForSelector("//button[span[text()='Approve']]");
             csLocator("//button[span[text()='Approve']]").click();
@@ -43,6 +42,7 @@ public class HarpiePage extends BasePage {
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] switchToOkxWalletPage() ==||== " + e.toString());
+            throw new RuntimeException();
         }
     }
 }

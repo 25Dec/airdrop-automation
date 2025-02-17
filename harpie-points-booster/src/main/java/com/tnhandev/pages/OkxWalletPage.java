@@ -18,6 +18,7 @@ public class OkxWalletPage extends BasePage {
     public void login() {
         try {
             csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
+            csWaitForLoadState();
             csGetByPlaceholder("Enter your password").fill(walletPassword);
             csGetByText("Unlock").click();
         }
@@ -59,7 +60,10 @@ public class OkxWalletPage extends BasePage {
     public void confirmTransaction() {
         try {
             csWaitForSelector("//button[span[div[text()='Confirm']]]");
-            csLocator("//button[span[div[text()='Confirm']]]").click();
+            if (csLocator("//button[span[div[text()='Confirm']]]").count() > 0) {
+                csLocator("//button[span[div[text()='Confirm']]]").click();
+                csDelay();
+            }
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] confirmTransaction() ==||== " + e.toString());
@@ -71,6 +75,8 @@ public class OkxWalletPage extends BasePage {
         try {
             HarpiePage harpiePage = new HarpiePage(context);
             harpiePage.login();
+            harpiePage.approveTransaction();
+            harpiePage.switchToOkxWalletPage();
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] switchToHarpiePage() ==||== " + e.toString());
@@ -78,7 +84,21 @@ public class OkxWalletPage extends BasePage {
         }
     }
 
-    public void closeHarpiePage() {
+    public void lockWallet() {
+        try {
+            csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
+            csWaitForLoadState();
+            csWaitForSelector("//i[contains(@class,'okx-wallet-plugin-settings-2')]");
+            csLocator("//i[contains(@class,'okx-wallet-plugin-settings-2')]").hover();
+            csLocator("//div[contains(text(),'Lock wallet')]").click();
+        }
+        catch (RuntimeException e) {
+            System.out.println("Lỗi ở [OkxWalletPage] lockWallet() ==||== " + e.toString());
+            throw new RuntimeException();
+        }
+    }
+
+    public void closeHarpiePages() {
         try {
             for (Page page : context.pages()) {
                 if (page.url().contains("harpie.io")) {
