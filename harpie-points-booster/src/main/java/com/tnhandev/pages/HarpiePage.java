@@ -12,7 +12,10 @@ public class HarpiePage extends BasePage {
         try {
             csNavigate("https://harpie.io/");
             csWaitForLoadState();
-            csGetByText("ENTER APP").click();
+            csGetByText("GET STARTED - IT'S FREE ").click();
+            csWaitForLoadState();
+            csLocator("//span[text()='Go to Dashboard']").click();
+            csWaitForLoadState();
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [HarpiePage] login() ==||== " + e.toString());

@@ -15,6 +15,23 @@ public class OkxWalletPage extends BasePage {
         this.amountToSend = amountToSend;
     }
 
+    public void start() {
+        try {
+            login();
+            switchRpc();
+            fillInForm();
+            confirmTransaction();
+            switchToHarpiePage();
+            confirmTransaction();
+            lockWallet();
+            closeHarpiePages();
+        }
+        catch (RuntimeException e) {
+            System.out.println("Lỗi ở [OkxWalletPage] start() ==||== " + e.toString());
+            throw new RuntimeException();
+        }
+    }
+
     public void login() {
         try {
             csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
