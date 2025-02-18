@@ -28,7 +28,6 @@ public class OkxWalletPage extends BasePage {
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] start() ==||== " + e.toString());
-            throw new RuntimeException();
         }
     }
 
@@ -83,6 +82,10 @@ public class OkxWalletPage extends BasePage {
                 csLocator("//button[span[div[text()='Confirm']]]").click();
                 csDelay();
             }
+            else {
+                csReload();
+                confirmTransaction();
+            }
         }
         catch (RuntimeException e) {
             System.out.println("Lỗi ở [OkxWalletPage] confirmTransaction() ==||== " + e.toString());
@@ -120,8 +123,12 @@ public class OkxWalletPage extends BasePage {
 
     public void lockWallet() {
         try {
-            csNavigate("chrome-extension://mcohilncbfahbmgdjkbpemcciiolgcge/popup.html");
-            csWaitForLoadState();
+            for (Page page : context.pages()) {
+                if (page.title().contains("OKX Wallet")) {
+                    page.bringToFront();
+                    break;
+                }
+            }
             csWaitForSelector("//i[contains(@class,'okx-wallet-plugin-settings-2')]");
             csLocator("//i[contains(@class,'okx-wallet-plugin-settings-2')]").hover();
             csLocator("//div[contains(text(),'Lock wallet')]").click();

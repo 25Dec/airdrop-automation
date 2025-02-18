@@ -49,4 +49,9 @@ public abstract class BasePage {
         csDelay();
         return page.getByPlaceholder(text);
     }
+
+    protected void csReload() {
+        page.reload();
+        csDelay();
+    }
 }

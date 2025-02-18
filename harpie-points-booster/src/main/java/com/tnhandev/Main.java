@@ -9,19 +9,19 @@ public class Main {
     public static void main(String[] args) {
         String walletPassword = "020121020121";
         String sendToAddress = "0xb3139fd0fa52b9d1f18988f5e64c06df0a08b718";
-        String amountToSend = "0.000001";
+        String amountToSend = "0.00000000001";
 
-        onlyRunChrome(walletPassword, sendToAddress, amountToSend);
+//        onlyRunChrome(walletPassword, sendToAddress, amountToSend);
 //        onlyRunEdge(walletPassword, sendToAddress, amountToSend);
-//        runBoth(walletPassword, sendToAddress, amountToSend);
+        runBoth(walletPassword, sendToAddress, amountToSend);
     }
 
     public static void calculateDuration(long startTime, long endTime, int count, String browserName) {
         double duration = (endTime - startTime) / 1_000_000_000.0; // Đổi sang giây
         if (duration < 60)
-            System.out.printf("🌐 Trình duyệt: %s | 🔄️ Lần thứ: %d | ⏳ Thời gian thực hiện: %.2f giây%n", browserName, count, duration);
+            System.out.printf("🌐 Trình duyệt: %-6s | 🔄️ Lần thứ: %-3d | ⏳ Thời gian thực hiện: %6.2f giây%n", browserName, count, duration);
         else
-            System.out.printf("🌐 Trình duyệt: %s | 🔄️ Lần thứ: %d | ⏳ Thời gian thực hiện: %.2f phút%n", browserName, count, duration / 60);
+            System.out.printf("🌐 Trình duyệt: %-6s | 🔄️ Lần thứ: %-3d | ⏳ Thời gian thực hiện: %6.2f phút%n", browserName, count, duration / 60);
     }
 
     public static void onlyRunChrome(String walletPassword, String sendToAddress, String amountToSend) {
@@ -67,7 +67,7 @@ public class Main {
             try (
                     Playwright playwright = Playwright.create();
                     Browser chromeBrowser = playwright.chromium().connectOverCDP("http://127.0.0.1:9999");
-                    BrowserContext chromeContext = chromeBrowser.contexts().getFirst();
+                    BrowserContext chromeContext = chromeBrowser.contexts().getFirst()
             ) {
                 OkxWalletPage chromeOkxWalletPage = new OkxWalletPage(chromeContext, walletPassword, sendToAddress, amountToSend);
                 int count = 1;
