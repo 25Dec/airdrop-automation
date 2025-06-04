@@ -33,7 +33,6 @@ public class OkxWalletPage extends BasePage {
 
     public void confirmTransaction() {
         try {
-            csDelay(1000);
             csWaitForSelector("//button[span[div[text()='Confirm']]]");
             if (csLocator("//button[span[div[text()='Confirm']]]").count() > 0) {
                 csLocator("//button[span[div[text()='Confirm']]]").click();

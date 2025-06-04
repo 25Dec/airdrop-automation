@@ -26,7 +26,7 @@ public class Main {
     public static void run(String loginEmail, String rpc, String amountToSend, String walletPassword) {
         try (
                 Playwright playwright = Playwright.create();
-                Browser chromeBrowser = playwright.chromium().connectOverCDP("http://127.0.0.1:9999");
+                Browser chromeBrowser = playwright.chromium().connectOverCDP("http://127.0.0.1:8888");
                 BrowserContext chromeContext = chromeBrowser.contexts().getFirst();
         ) {
             HanafudaPage hanafudaPage = new HanafudaPage(chromeContext, loginEmail, rpc, amountToSend, walletPassword);

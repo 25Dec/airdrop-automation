@@ -43,7 +43,7 @@ public class HanafudaPage extends BasePage {
 
     public void switchRpc() {
         try {
-            csLocator("//button//div[text()='Hyperliquid Testnet']").click();
+            csLocator("//button//div[text()='Hyperliquid']").click();
             csLocator("//div[@role='menuitem']//div[@class='ml-3 text-button-l' and text()='" + rpc + "']").click();
         }
         catch (RuntimeException e) {
